@@ -1,4 +1,7 @@
 require 'sinatra'
+require 'sinatra/reloader'
+set :public_folder, 'public'
+set :views, 'views'
 
 get '/' do 
 	erb :home
@@ -12,38 +15,11 @@ get '/contact' do
 	erb :contact
 end
 
-__END__
-@@layout
-<% title="Songs By Sinatra" %>
-<!doctype html>
-<html lang="en">
-<head>
-  <title><%= title %></title>
-  <meta charset="utf-8">
-</head>
-<body>
-  <header>
-    <h1><%= title %></h1>
-    <nav>
-      <ul>
-        <li><a href="/" title="Home">Home</a></li>
-        <li><a href="/about" title="About">About</a>
-        </li>
-        <li><a href="/contact" title="Contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-  <section>
-  	<%= yield %>
-  </section>
-</body>
-</html>
+not_found do
+	erb :not_found
+end
 
-@@home
-<p>Welcome to this website all about the songs of the great Frank Sinatra</p>
-
-@@about
-<p>This site is a demonstration of how to build a website using Sinatra </p>
-
-@@contact
-<p>You can contact me by sending an email to hello at gmail.com</p>
+get '/fake-error' do
+	status 500
+	"there is nothing wrong, really :p"
+end
