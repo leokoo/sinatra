@@ -1,23 +1,24 @@
 require 'sinatra'
 require 'sinatra/reloader'
+require 'slim'
 set :public_folder, 'public'
 set :views, 'views'
 
 get '/' do 
-	erb :home
+	slim :home
 end
 
 get '/about' do
 	@title = "All About This Website"
-	erb :about
+	slim :about
 end
 
 get '/contact' do
-	erb :contact
+	slim :contact
 end
 
 not_found do
-	erb :not_found
+	slim :not_found
 end
 
 get '/fake-error' do
