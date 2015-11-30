@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'slim'
+require 'sass'
+get('/styles.css'){ scss :styles }
 set :public_folder, 'public'
 set :views, 'views'
 
